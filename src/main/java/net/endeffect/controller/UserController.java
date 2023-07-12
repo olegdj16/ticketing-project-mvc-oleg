@@ -16,6 +16,8 @@ public class UserController {
 
         model.addAttribute("user", new UserDTO()); // will communicate with UI
 
+//        model.addAttribute("roles", R)
+
         return "/user/create";
     }
 
