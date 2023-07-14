@@ -2,7 +2,7 @@ package net.endeffect.enums;
 
 public enum Gender {
 
-    MALE("Male"), FEMALE("Female"), STATUS("In Progress");
+    MALE("Male"), FEMALE("Female");
 
     private final String value;
 

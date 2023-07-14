@@ -3,11 +3,10 @@ package net.endeffect.service;
 
 import java.util.List;
 
-public interface CrudService<T, ID> {
+public interface CrudService<T,ID> {
 
-    T save(T entity);
-    T findById(ID id);
+    T save(T object);
     List<T> findAll();
-    void delete(T entity);
+    T findById(ID id);
     void deleteById(ID id);
 }
