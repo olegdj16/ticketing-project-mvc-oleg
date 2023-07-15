@@ -6,6 +6,8 @@ import net.endeffect.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -25,12 +27,24 @@ public class UserController {
 
         model.addAttribute("user", new UserDTO()); // will communicate with UI
         model.addAttribute("roles", roleService.findAll()); // bring me all roles from the Database
-
         model.addAttribute("users", userService.findAll());
 
 //        model.addAttribute("roles", R)
 
         return "/user/create";
+    }
+
+    @PostMapping("/create")
+    public String insertUser(@ModelAttribute("user") UserDTO user, Model model){
+
+//        model.addAttribute("user", new UserDTO()); // this will give empty object after save: user
+//        model.addAttribute("roles", roleService.findAll()); // bring me all roles from the Database
+
+        userService.save(user);
+//        model.addAttribute("users", userService.findAll());
+
+
+        return "redirect:/user/create";
     }
 
 
