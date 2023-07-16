@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.endeffect.enums.Status;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -14,11 +15,14 @@ public class ProjectDTO {
 
     private String projectName;
     private String projectCode;
-    private UserDTO assignedManager; // will show users in drop down
+    private UserDTO assignedManager;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private String projectDetail;
     private Status projectStatus;
+
 
 
 }
