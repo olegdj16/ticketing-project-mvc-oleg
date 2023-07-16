@@ -1,6 +1,7 @@
 package net.endeffect.controller;
 
 import net.endeffect.dto.UserDTO;
+import net.endeffect.entity.User;
 import net.endeffect.service.RoleService;
 import net.endeffect.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -47,18 +48,28 @@ public class UserController {
     @GetMapping("/update/{username}")
     public String editUser(@PathVariable("username") String username, Model model){
 
-        model.addAttribute("user", new UserDTO()); // will communicate with UI
+        model.addAttribute("user", userService.findById(username)); // will communicate with UI
         model.addAttribute("roles", roleService.findAll()); // bring me all roles from the Database
         model.addAttribute("users", userService.findAll());
 
-
-
-
         return "/user/update";
-
 
     }
 
+    @PostMapping("/update")
+    public String updateUser(UserDTO user){
 
+        userService.update(user);
 
+        return "redirect:/user/create";
+
+    }
+
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username){
+
+        userService.deleteById(username);
+
+        return "redirect:/user/create";
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import net.endeffect.dto.RoleDTO;
 import net.endeffect.service.RoleService;
 
-@Component
+@Service
 public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements RoleService {
 
     @Override
@@ -23,6 +23,11 @@ public class RoleServiceImpl extends AbstractMapService<RoleDTO,Long> implements
     @Override
     public void deleteById(Long id) {
         super.deleteById(id);
+    }
+
+    @Override
+    public void update(RoleDTO object) {
+        super.update(object.getId(), object);
     }
 
     @Override
