@@ -1,5 +1,6 @@
 package net.endeffect.controller;
 
+import net.endeffect.dto.RoleDto;
 import net.endeffect.dto.UserDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,8 @@ public class UserController {
     public String userCreate(Model model) {
 
         model.addAttribute("user", new UserDto());
+
+//        model.addAttribute("role", LIST_OF_ROLES);
 
 
         return "/user/create";
