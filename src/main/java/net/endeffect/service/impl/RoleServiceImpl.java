@@ -2,9 +2,11 @@ package net.endeffect.service.impl;
 
 import net.endeffect.dto.RoleDto;
 import net.endeffect.service.RoleService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImpl extends AbstractMapService<RoleDto, Long> implements RoleService {
 
     @Override

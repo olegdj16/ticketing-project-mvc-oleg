@@ -4,9 +4,11 @@ import net.endeffect.dto.RoleDto;
 import net.endeffect.dto.UserDto;
 import net.endeffect.service.RoleService;
 import net.endeffect.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl  extends AbstractMapService<UserDto, String> implements UserService {
 
     @Override
