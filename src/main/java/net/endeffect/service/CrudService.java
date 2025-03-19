@@ -4,10 +4,9 @@ import java.util.List;
 
 public interface CrudService<T, ID> {
 
-    T save(T roleDto);
+    T save(T object);
     List<T> findAll();
     T findById(ID id);
-    void delete(T role);
     void deleteById (ID id);
 
 }

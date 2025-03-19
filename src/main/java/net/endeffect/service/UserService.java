@@ -1,16 +1,17 @@
 package net.endeffect.service;
 
-import net.endeffect.dto.RoleDto;
 import net.endeffect.dto.UserDto;
 
 import java.util.List;
 
 public interface UserService extends CrudService<UserDto, String> {
 
-//    UserDto save(UserDto roleDto);
-//    UserDto findById(Long id);
+    // we dont need these because we are extending CrudService
+
+//    UserDto save(UserDto user);
+//    UserDto findById(String username);
 //    List<UserDto> findAll();
-//    void delete(UserDto role);
+//    void delete(UserDto user);
 //    void deleteById(String username);
 
 }

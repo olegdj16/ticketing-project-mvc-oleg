@@ -5,9 +5,11 @@ import net.endeffect.dto.UserDto;
 
 import java.util.List;
 
-public interface RoleService extends CrudService<UserDto, String> {
+public interface RoleService extends CrudService<RoleDto, Long> {
 
-//    RoleDto save(RoleDto roleDto);
+    // we dont need these because we are extending CrudService
+
+//    RoleDto save(RoleDto role);
 //    RoleDto findById(Long id);
 //    List<RoleDto> findAll();
 //    void delete(RoleDto role);
