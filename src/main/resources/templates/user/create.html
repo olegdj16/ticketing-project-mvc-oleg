@@ -87,13 +87,12 @@
                                                     <label>Gender</label><br>
                                                     <label class="custom-control custom-radio custom-control-inline">
 
-                                                        <-- we need th:value here because we are using th:field in the form -->
+                                                        <!-- we need th:value here because we are using th:field in the form -->
                                                         <input type="radio" name="radio-inline" th:field="*{gender}" th:value="Male" class="custom-control-input"><span class="custom-control-label">Male</span>
                                                     </label>
                                                     <label class="custom-control custom-radio custom-control-inline">
                                                         <input type="radio" name="radio-inline" th:field="*{gender}" th:value="Female" class="custom-control-input"><span class="custom-control-label">Female</span>
                                                     </label>
-
                                                 </div>
                                             </div>
 
@@ -101,8 +100,8 @@
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
                                                     <select name="role" th:field="*{role}" class="custom-select">
-                                                        <option th:value="" th:text="Select"></option>
-                                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}">Role</option>
+                                                        <option th:value="''" th:text="Select"></option>
+                                                        <option th:each="role : ${roles}" th:value="${role}" th:text="${role.description}">Role</option>
                                                     </select>
                                                 </div>
                                             </div>
