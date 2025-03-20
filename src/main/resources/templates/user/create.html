@@ -32,6 +32,12 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
+
+                                                                               <!-- th:object="${user}" will populate an empty form
+                                                                               as defined in: UserCOntroller.java
+                                                                                   public String insertUser(@ModelAttribute("user") UserDto user, Model model){
+                                                                                   // need this: after save, you need an empty form back. this will provide an empty object
+                                                                                   model.addAttribute("user", new UserDto());-->
                                     <form th:action="@{/user/create}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
