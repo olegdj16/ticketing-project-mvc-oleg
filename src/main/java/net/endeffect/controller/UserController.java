@@ -27,7 +27,7 @@ public class UserController {
 
         model.addAttribute("user", new UserDto());
         model.addAttribute("roles", roleService.findAll());
-
+        model.addAttribute("users", userService.findAll());
 
         return "/user/create";
     }

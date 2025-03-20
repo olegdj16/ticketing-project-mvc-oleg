@@ -32,7 +32,7 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form action="#" th:object="${user}">
+                                    <form th:action="@{/user/create}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
@@ -53,7 +53,7 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="emailaddress" class="col-form-label">Email Address</label>
-                                                    <input id="emailaddress" type="text" placeholder="email address" th:field="*{userName}" class="form-control">>
+                                                    <input id="emailaddress" type="text" placeholder="email address" th:field="*{userName}" class="form-control">
                                                 </div>
                                             </div>
 
@@ -99,9 +99,13 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
+
+                                                    <!-- 'th:field' will provide 'id' and 'name' attributes for the select tag in html-->
                                                     <select name="role" th:field="*{role}" class="custom-select">
                                                         <option th:value="''" th:text="Select"></option>
-                                                        <option th:each="role : ${roles}" th:value="${role}" th:text="${role.description}">Role</option>
+
+                                                        <!-- 'th:value="${role.id}' will provide 'id = 1, etc', and cis coming from primary key in DB-->
+                                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.description}">Role</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -155,12 +159,12 @@
 
                                             <tbody>
 
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr th:each="user : ${users}">
+                                                <td th:text="|${user.firstName} ${user.lastName}|"></td>
+                                                <td th:text="${user.userName}"></td>
+                                                <td th:text="${user.gender.getValue}"></td>
+                                                <td th:text="${user.phone}"></td>
+                                                <td th:text="${user.role?.description}"></td>
                                                 <td class="actions">
                                                     <a href="#"><button type="button" class="btn btn-warning btn-sm">Update</button></a>
                                                     <a href="#" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>

@@ -32,40 +32,16 @@ public class DataGenerator implements CommandLineRunner {
         roleService.save(managerRole);
         roleService.save(employeeRole);
 
+        UserDto user1 = new UserDto("John", "Kesy", "john@cydeo.com", "Abc2", true, "7459684532", managerRole, Gender.MALE);
+        UserDto user5 = new UserDto("Mike", "Smith", "mike@cydeo.com", "Abc2", true, "7459684532", adminRole, Gender.MALE);
+        UserDto user2 = new UserDto("Delisa", "Moore", "delisa@cydeo.com", "123", true, "8567412358", managerRole, Gender.FEMALE);
+        UserDto user3 = new UserDto("Craig", "Jack", "craig@cydeo.com", "Abc4", true, "7777775566", employeeRole, Gender.MALE);
+        UserDto user4 = new UserDto("Shaun", "Hayes", "shaun@cydeo.com", "Abc4", true, "3256987412", managerRole, Gender.MALE);
+        UserDto user6 = new UserDto("Elizabeth", "Loren", "elizabeth@cydeo.com", "Abc4", true, "5306987412", employeeRole, Gender.FEMALE);
+        UserDto user7 = new UserDto("Maria", "Ad", "maria@cydeo.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
+        UserDto user8 = new UserDto("Bill", "Matt", "bill@cydeo.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
 
-
-        UserDto user1 = new UserDto("John", "Kesy",
-                "john@cydeo.com", "Abc2", true,
-                "7459684532", managerRole, Gender.MALE);
-
-        UserDto user5 = new UserDto("Mike", "Smith",
-                "mike@cydeo.com", "Abc2", true,
-                "7459684532", adminRole, Gender.MALE);
-
-        UserDto user2 = new UserDto("Delisa", "Moore",
-                "delisa@cydeo.com", "123", true,
-                "8567412358", managerRole, Gender.FEMALE);
-
-        UserDto user3 = new UserDto("Craig", "Jack",
-                "craig@cydeo.com", "Abc4", true,
-                "7777775566", employeeRole, Gender.MALE);
-
-        UserDto user4 = new UserDto("Shaun", "Hayes",
-                "shaun@cydeo.com", "Abc4", true,
-                "3256987412", managerRole, Gender.MALE);
-
-        UserDto user6 = new UserDto("Elizabeth", "Loren",
-                "elizabeth@cydeo.com", "Abc4", true,
-                "5306987412", employeeRole, Gender.FEMALE);
-
-        UserDto user7 = new UserDto("Maria", "Ad",
-                "maria@cydeo.com", "Abc4", true,
-                "9996987412", employeeRole, Gender.FEMALE);
-
-        UserDto user8 = new UserDto("Bill", "Matt",
-                "bill@cydeo.com", "Abc4", true,
-                "8881239846", employeeRole, Gender.MALE);
-
+        // here we are saving the user in the map
         userService.save(user1);
         userService.save(user2);
         userService.save(user3);
