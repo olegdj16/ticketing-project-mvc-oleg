@@ -75,11 +75,19 @@ public class UserController {
     @GetMapping("/update/{username}")
     public String editUser(@PathVariable("username") String username, Model model) {
 
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("user", userService.findById(username));
         model.addAttribute("roles", roleService.findAll());
         model.addAttribute("users", userService.findAll());
 
         return "/user/update";
+    }
+
+    @PostMapping("/update")
+    public String updateUser(UserDto user) {
+
+        userService.update(user);
+
+        return "redirect:/user/create";
     }
 
 }

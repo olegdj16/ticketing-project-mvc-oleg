@@ -38,7 +38,7 @@
                                         public String insertUser(@ModelAttribute("user") UserDto user, Model model){
                                         // need this: after save, you need an empty form back. this will provide an empty object
                                         model.addAttribute("user", new UserDto());-->
-                                    <form th:action="@{/user/create}" method="post" th:object="${user}">
+                                    <form th:action="@{/user/update}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
@@ -108,10 +108,10 @@
 
                                                     <!-- 'th:field' will provide 'id' and 'name' attributes for the select tag in html-->
                                                     <select name="role" th:field="*{role}" class="custom-select">
-                                                        <option th:value="''" th:text="Select"></option>
-
-                                                        <!-- 'th:value="${role.id}' will provide 'id = 1, etc', and cis coming from primary key in DB-->
-                                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.description}">Role</option>
+                                                        <option th:each="role : ${roles}"
+                                                                th:value="${role.id}"
+                                                                th:text="${role.description}">
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
