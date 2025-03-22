@@ -32,19 +32,25 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" action="#">
+
+                                    <!-- th:object="${user}" will populate an empty form
+                                    as defined in: UserController.java
+                                        public String insertUser(@ModelAttribute("user") UserDto user, Model model){
+                                        // need this: after save, you need an empty form back. this will provide an empty object
+                                        model.addAttribute("user", new UserDto());-->
+                                    <form th:action="@{/user/create}" method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="firstname" class="col-form-label">First Name</label>
-                                                    <input id="firstname" type="text" placeholder="first name" class="form-control">
+                                                    <input id="firstname" type="text" placeholder="first name" th:field="*{firstName}" class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="lastname" class="col-form-label">Last Name</label>
-                                                    <input id="lastname" type="text" placeholder="last name" class="form-control">
+                                                    <input id="lastname" type="text" placeholder="last name" th:field="*{lastName}" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -53,14 +59,14 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="emailaddress" class="col-form-label">Email Address</label>
-                                                    <input id="emailaddress" type="text" placeholder="email address" class="form-control">>
+                                                    <input id="emailaddress" type="text" placeholder="email address" th:field="*{userName}" class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="phonenumber" class="col-form-label">Phone Number</label>
-                                                    <input id="phonenumber" type="tel" placeholder="phone number" class="form-control">
+                                                    <input id="phonenumber" type="tel" placeholder="phone number" th:field="*{phone}" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -69,14 +75,14 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="password" class="col-form-label">Password</label>
-                                                    <input id="password" type="password" placeholder="password" class="form-control">
+                                                    <input id="password" type="password" placeholder="password" th:field="*{password}" class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="repassword" class="col-form-label">Confirm Password</label>
-                                                    <input id="repassword" type="password" placeholder="confirm your password" class="form-control">
+                                                    <input id="repassword" type="password" placeholder="confirm your password" th:field="*{password}" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -86,20 +92,26 @@
                                                 <div class="form-group">
                                                     <label>Gender</label><br>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">Male</span>
+
+                                                        <!-- we need th:value here because we are using th:field in the form -->
+                                                        <input type="radio" name="radio-inline" th:field="*{gender}" th:value="MALE" class="custom-control-input"><span class="custom-control-label">Male</span>
                                                     </label>
                                                     <label class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">Female</span>
+                                                        <input type="radio" name="radio-inline" th:field="*{gender}" th:value="FEMALE" class="custom-control-input"><span class="custom-control-label">Female</span>
                                                     </label>
-
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label>Choose a Role</label>
-                                                    <select name="role" class="custom-select">
-                                                        <option></option>
+
+                                                    <!-- 'th:field' will provide 'id' and 'name' attributes for the select tag in html-->
+                                                    <select name="role" th:field="*{role}" class="custom-select">
+                                                        <option th:value="''" th:text="Select"></option>
+
+                                                        <!-- 'th:value="${role.id}' will provide 'id = 1, etc', and cis coming from primary key in DB-->
+                                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.description}">Role</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -153,14 +165,17 @@
 
                                             <tbody>
 
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr th:each="user : ${users}">
+                                                <td th:text="|${user.firstName} ${user.lastName}|"></td>
+                                                <td th:text="${user.userName}"></td>
+                                                <td th:text="${user.gender.getValue}"></td>
+                                                <td th:text="${user.phone}"></td>
+                                                <td th:text="${user.role?.description}"></td>
                                                 <td class="actions">
-                                                    <a href="#"><button type="button" class="btn btn-warning btn-sm">Update</button></a>
+
+                                                    <!-- this binds to public String editUser in UserController.java -->
+                                                    <!-- {                                        } -->
+                                                    <a th:href="@{/user/update/{id}(id=${user.userName})}"><button type="button" class="btn btn-warning btn-sm">Update</button></a>
                                                     <a href="#" class="delete-row"><button type="button" class="btn btn-secondary btn-sm">Delete</button></a>
                                                 </td>
                                             </tr>
