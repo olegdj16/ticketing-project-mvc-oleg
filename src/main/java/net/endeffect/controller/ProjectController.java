@@ -6,6 +6,7 @@ import net.endeffect.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,12 +29,12 @@ public class ProjectController {
 
         model.addAttribute("project", new ProjectDto());
         model.addAttribute("projects", projectService.findAll());
-        model.addAttribute("managers", userService.findAll());
+        model.addAttribute("managers", userService.findManagers());
 
         return "/project/create";
     }
 
-    // step 3: then, go create the create.html file in resources/templates/project
+    // This method handles the form submission for creating a project
     @PostMapping("/create")
     public String projectCreate(ProjectDto project) {
 
@@ -42,6 +43,13 @@ public class ProjectController {
 
         // Redirect to the project creation page to display the updated list of projects
         return "redirect:/project/create";
+    }
+
+    @GetMapping("/delete/{projectCode}")
+    public String deleteProject(@PathVariable("projectCode") String projectCode) {
+        projectService.deleteById(projectCode);
+        return "redirect:/project/create";
+
     }
 
 

@@ -7,6 +7,7 @@ import net.endeffect.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl  extends AbstractMapService<UserDto, String> implements UserService {
@@ -35,5 +36,16 @@ public class UserServiceImpl  extends AbstractMapService<UserDto, String> implem
     @Override
     public UserDto findById(String id) {
         return super.findById(id);
+    }
+
+    @Override
+    public List<UserDto> findManagers() {
+        return super
+                .findAll()
+                .stream()
+                .filter(
+                user -> user.getRole()
+                .getId() == 2)
+                .collect(Collectors.toList());
     }
 }
