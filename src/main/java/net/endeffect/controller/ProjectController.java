@@ -6,6 +6,7 @@ import net.endeffect.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -31,4 +32,21 @@ public class ProjectController {
 
         return "/project/create";
     }
+
+    // step 3: then, go create the create.html file in resources/templates/project
+    @PostMapping("/create")
+    public String projectCreate(ProjectDto project) {
+
+        projectService.save(project);
+
+        return "redirect:/project/create";
+    }
+
+
+
+    // step 4: then, go create the ProjectDto.java file in dto package
+    // step 5: then, go create the ProjectService.java file in service package
+    // step 6: then, go create the ProjectServiceImpl.java file in service/impl package
+    // step 7: then, go create the ProjectRepository.java file in repository package
+
 }
