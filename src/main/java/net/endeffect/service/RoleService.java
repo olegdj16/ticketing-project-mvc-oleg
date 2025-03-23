@@ -1,9 +1,6 @@
 package net.endeffect.service;
 
 import net.endeffect.dto.RoleDto;
-import net.endeffect.dto.UserDto;
-
-import java.util.List;
 
 public interface RoleService extends CrudService<RoleDto, Long> {
 
