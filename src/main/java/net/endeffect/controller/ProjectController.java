@@ -44,9 +44,4 @@ public class ProjectController {
 
 
 
-    // step 4: then, go create the ProjectDto.java file in dto package
-    // step 5: then, go create the ProjectService.java file in service package
-    // step 6: then, go create the ProjectServiceImpl.java file in service/impl package
-    // step 7: then, go create the ProjectRepository.java file in repository package
-
 }
