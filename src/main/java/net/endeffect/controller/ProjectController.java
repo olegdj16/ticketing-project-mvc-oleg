@@ -37,8 +37,10 @@ public class ProjectController {
     @PostMapping("/create")
     public String projectCreate(ProjectDto project) {
 
+        // Save the project using the projectService
         projectService.save(project);
 
+        // Redirect to the project creation page to display the updated list of projects
         return "redirect:/project/create";
     }
 
