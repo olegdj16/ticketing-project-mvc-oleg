@@ -66,5 +66,13 @@ public class ProjectController {
         model.addAttribute("managers", userService.findManagers());
 
         return "/project/update";
-        }
+    }
+
+    @PostMapping("/update/{projectCode}")
+    public String updateProject(@PathVariable("projectCode") String projectCode, ProjectDto project) {
+
+        projectService.update(project);
+
+        return "redirect:/project/create";
+    }
 }

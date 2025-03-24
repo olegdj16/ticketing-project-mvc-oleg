@@ -32,8 +32,8 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form th:action="@{/project/create}" th:object="${project}" method="post">
-                                        <div class="row">
+                                    <form th:action="@{/project/update/{projectCode}(projectCode=${project.projectCode})}" th:object="${project}" method="post">
+                                    <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="projectname" class="col-form-label">Project Name</label>
