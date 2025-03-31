@@ -1,6 +1,7 @@
 package net.endeffect.controller;
 
 import net.endeffect.dto.ProjectDto;
+import net.endeffect.dto.UserDto;
 import net.endeffect.service.ProjectService;
 import net.endeffect.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/project")
@@ -68,11 +71,24 @@ public class ProjectController {
         return "/project/update";
     }
 
-    @PostMapping("/update/{projectCode}")
-    public String updateProject(@PathVariable("projectCode") String projectCode, ProjectDto project) {
-
+    @PostMapping("/update/")
+    public String updateProject(ProjectDto project) {
         projectService.update(project);
-
         return "redirect:/project/create";
     }
+
+    // sart @01:00:10 part 5 mvc
+    @GetMapping("/manager/project-status")
+    public String getProjectByManager(Model model) {
+
+        // 17 Ticketing Project MVC Part5 @01:01:38
+        UserDto manager = userService.findById("john@endeffects.com");
+
+        List<ProjectDto> projects = projectService.getCountedListOfProjectDTO(manager);
+
+        model.addAttribute("projects", projects);
+
+        return "/manager/project-status";
+    }
+
 }

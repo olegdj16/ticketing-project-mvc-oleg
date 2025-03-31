@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import net.endeffect.enums.Status;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class TaskDto {
 
@@ -19,6 +19,16 @@ public class TaskDto {
     private String taskDetail;
 
     private Status taskStatus;
-    private LocalDate assignDate;
+    private LocalDate assignedDate;
+
+    public TaskDto(ProjectDto project, UserDto assignedEmployee, String taskSubject, String taskDetail, Status taskStatus, LocalDate assignedDate) {
+        this.project = project;
+        this.assignedEmployee = assignedEmployee;
+        this.taskSubject = taskSubject;
+        this.taskDetail = taskDetail;
+        this.taskStatus = taskStatus;
+        this.assignedDate = assignedDate;
+        this.id = UUID.randomUUID().getMostSignificantBits();
+    }
 
 }
